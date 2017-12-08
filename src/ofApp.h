@@ -66,9 +66,6 @@ class ofApp : public ofBaseApp {
     float fftSize = 1024;
     int bufferSize = 512;
     float drawOutput [512]; //to draw bufferSize
-    
-    float sum = 0;
-    float average = 0;
 
     
 };

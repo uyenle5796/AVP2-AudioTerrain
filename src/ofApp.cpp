@@ -123,10 +123,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::audioOut (float *output, int bufferSize, int nChannels) {
-    
-    sum = 0;
-    average = 0;
-    
+
     for (int i = 0; i < bufferSize; i++) {
         
         //Start the timer
@@ -168,8 +165,7 @@ void ofApp::audioOut (float *output, int bufferSize, int nChannels) {
             
             myCounter++;
         }
-        
-        sum += fabs(sampleOut);
+  
         // calculate floating point absolute value of the sample
         // so that the values are always positive
         
@@ -178,10 +174,7 @@ void ofApp::audioOut (float *output, int bufferSize, int nChannels) {
         output[i*nChannels + 1] = sampleOut; //right channel
         
     }
-    
-    //sum = sqrt(sum);
-    
-    average = sum / bufferSize;
+
 }
 
 //--------------------------------------------------------------
