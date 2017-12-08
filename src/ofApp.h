@@ -26,15 +26,15 @@ class ofApp : public ofBaseApp {
     
     
     // 3D TERRAIN
-    ofEasyCam easyCam;
+    ofEasyCam easyCam; //camera that allows looking around
     
-    ofMesh mesh;
+    ofMesh mesh; //mesh object for creating the terrain
     
     int rows, cols;
+    float width = 1000; //width of the mesh
+    float height = 800; //height of the mesh
     int scale = 20; //resolution
-    float width = 1300;
-    float height = 1500;
-    
+
     float flying;
     
     float sat = 0;
