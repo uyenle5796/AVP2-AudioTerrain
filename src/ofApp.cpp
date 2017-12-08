@@ -36,8 +36,6 @@ void ofApp::setup(){
     
     //Create the mesh
     for(int y=0; y < rows-1; y++) {
-        float xoff = 0;
-        
         for(int x=0; x < cols; x++) {
             
             mesh.addColor(ofColor(hue, sat, br));
@@ -52,7 +50,6 @@ void ofApp::setup(){
             if (hue > 255) hue = 0;
         }
     }
-    
     mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
     
     
@@ -78,16 +75,19 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     
-
     //Get vertices of the mesh
     auto &verts = mesh.getVertices();
     
-    int size = 2;
     //Add noise to the z coordinate vertices
     for(int i=0; i < verts.size(); i++ ) {
-        
-        verts[i].z += ofSignedNoise(verts[i].y/size, verts[i].z/size, verts[i].x/size, ofGetElapsedTimef()/size);
-        
+        for(int j=0; j < bufferSize; j++) {
+            
+            int scale = 10;
+            
+            //Assign magnitude of the audio to the vertices in the Z axis
+            // so that the terrain moves along with the magnitudes of the audio
+            verts[i].z = myFFT.magnitudes[i] * scale; //multiply with scale of 10 to make it easier to see the movements
+        }
     }
 }
 
@@ -98,14 +98,14 @@ void ofApp::draw(){
     
     glEnable(GL_DEPTH_TEST);
     
-    ofSetColor(255,200,1, ofRandom(255));
+    ofSetColor(255,200,1, 255);
 
     // Transform the mesh
     ofPushMatrix();
     
-    ofTranslate(ofGetWidth()/2-1000, ofGetHeight()/2-200);
+    ofTranslate(ofGetWidth()/2-1000, ofGetHeight()/2-100);
     ofRotateX(ofRadToDeg(PI/1.7));
-    ofTranslate(-width/2, -height/2, 300);
+    ofTranslate(-width/2, -height/2, 500);
     ofScale(1.5, 1.5);
     
     mesh.drawVertices();

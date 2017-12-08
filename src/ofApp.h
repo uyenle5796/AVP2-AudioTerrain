@@ -26,8 +26,12 @@ class ofApp : public ofBaseApp {
     
     
     // 3D TERRAIN
+    ofEasyCam easyCam;
+    
+    ofMesh mesh;
+    
     int rows, cols;
-    int scale = 15; //resolution
+    int scale = 20; //resolution
     float width = 1300;
     float height = 1500;
     
@@ -38,10 +42,6 @@ class ofApp : public ofBaseApp {
     float br = 255;
     
     float zvalue[0][0]; //multi-dimensional array to store z values of each vertex
-    
-    ofEasyCam easyCam;
-    
-    ofMesh mesh;
     
     
     // MAXIMILIAN STUFF
