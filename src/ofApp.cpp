@@ -34,28 +34,28 @@ void ofApp::setup(){
     rows = width/scale;
     cols = height/scale;
     
-    zvalue[rows][cols] = { };
+    zvalue[rows][cols] = { }; //multi-dimensional array to store z values of each vertex
     
     //Create the terrain
     
-    //Terrain mesh conists of rows and columns
-    //connected by sets of vertices across and down in a shape of a triangle
+    //Terrain mesh conists of rows and columns, which corresponds with y (height) and x (width)
+    //The mesh is connected by sets of vertices across and down in a triangular shape
     for(int y=0; y < rows-1; y++) {
         for(int x=0; x < cols; x++) {
             
-            mesh.addColor(ofColor(hue, sat, br)); //add
+            mesh.addColor(ofColor(hue, sat, br)); //assign the colours as defined in setup to each vertex
             
             mesh.addVertex(ofPoint(x*scale, y*scale, zvalue[x][y])); //draw set of vertices across
             mesh.addVertex(ofPoint(x*scale, (y+1)*scale, zvalue[x][y+1]));  //draw set of vertices down (y+1)
             
             //Add colour gradients by changing the saturation hue and brightness of each pixel
-            sat += 0.05;
-            hue += 0.025;
+            sat += 0.6;
+            hue += 0.6;
             if (sat > 255) sat = 0;
             if (hue > 255) hue = 0;
         }
     }
-    mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP); //allows us to create the mesh of triangle-shaped vertices
+    mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP); //This mode allows us to create the mesh of triangle-shaped vertices
     
     
     // MAXIMILIAN SETUP
@@ -82,17 +82,17 @@ void ofApp::update(){
     
     //Make the vertices move along with the audio
 
-    auto &verts = mesh.getVertices(); //Get vertices of the mesh
+    auto &verts = mesh.getVertices(); //Get all vertices of the mesh
     
-    // Loop through all the vertices
-    //Then loop through the bufferSize (512) to get the FFT magnitudes of the audio
+    // For each vertex
     for(int i=0; i < verts.size(); i++ ) {
+        // Loop through the bufferSize (512) to get the FFT magnitudes of the audio
         for(int j=0; j < bufferSize; j++) {
             
             int scale = 10; //scale up movement 10 times more to make it easier to see the movements
             
-            //Assign magnitude of the audio to the vertices in the Z axis
-            //so that the terrain moves along with the magnitudes of the audio
+            //Assign audio magnitude to the vertices in the Z axis
+            //so that each vertex moves up and down, along with the magnitudes of the audio
             verts[i].z = myFFT.magnitudes[i] * scale;
         }
     }
@@ -108,14 +108,18 @@ void ofApp::draw(){
     // Transform the mesh
     ofPushMatrix();
     
-    ofTranslate(ofGetWidth()/2-500, ofGetHeight()/2-100); //center the mesh to the middle of the screen
+    ofTranslate(ofGetWidth()/2-500, ofGetHeight()/2-100); //move the mesh to center of the window
     ofRotateX(ofRadToDeg(PI/1.7)); //lay it flat down
+    
+    //move it again so that it sits in the middle of the screen
     ofTranslate(-width/2, -height/2, 300);
 
     ofScale(1.5, 1.5); //scale it up by factor of 1.5 to make it bigger
     
-    mesh.drawVertices(); //display the mesh
+    mesh.drawVertices(); //draws the vertices only (no edges)
+                         //which gives us only the points
     
+    // Finish transformations
     ofPopMatrix();
     
     easyCam.end(); //end easyCam

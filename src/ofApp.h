@@ -31,17 +31,15 @@ class ofApp : public ofBaseApp {
     ofMesh mesh; //mesh object for creating the terrain
     
     int rows, cols;
-    float width = 1000; //width of the mesh
-    float height = 800; //height of the mesh
-    int scale = 20; //resolution
+    float width = 1000; //width of mesh
+    float height = 800; //height of mesh
+    int scale = 20; //resolution of the mesh
 
-    float flying;
-    
     float sat = 0;
     float hue = 100;
     float br = 255;
     
-    float zvalue[0][0]; //multi-dimensional array to store z values of each vertex
+    float zvalue[0][0];
     
     
     // MAXIMILIAN STUFF
