@@ -1,5 +1,5 @@
 # 3D Audio Terrain
-Visualising audio with 3D Terrain 🎵 in openFrameworks.
+Visualising audio with 3D Terrain 🎵 with Maximilian in openFrameworks.
 <br>
 
 ![screenshot](bin/data/screenshot.png)
