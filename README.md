@@ -2,7 +2,7 @@
 Visualising audio with 3D Terrain 🎵 in openFrameworks.
 <br>
 
-![screenshot](image.jpg)
+![screenshot](bin/data/screenshot.png)
 
 #### Prerequisites
 - [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) v9.1 
@@ -16,6 +16,7 @@ Visualising audio with 3D Terrain 🎵 in openFrameworks.
 4. Open and compile the program in Xcode.
 5. Once compiled, click + hold + move mouse to change the camera angle.
 
+Note: Please compile at least twice for better results.
 <br>
 
 ---
