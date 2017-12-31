@@ -13,7 +13,7 @@ Visualising audio with 3D Terrain 🎵 with Maximilian in openFrameworks.
 1. Download and install Xcode and openFrameworks.
 2. Clone Maximilian.
 3. Copy 'ofxMaxim' folder in Maximilian/openFrameworks/ to your openFrameworks/addons/ folder.
-4. Open and compile the program in Xcode.
+4. Open and compile `AVP2-AudioTerrain.xcodeproj` in Xcode.
 5. Once compiled, click + hold + move mouse to change the camera angle.
 
 Note: Please compile at least twice for better results.
