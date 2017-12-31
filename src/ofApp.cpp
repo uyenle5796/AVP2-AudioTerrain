@@ -30,6 +30,7 @@ void ofApp::setup(){
     ofBackground(0, 0, 0); //black background
     ofSetFrameRate(60);
     
+    
     //3D TERRAIN SETUP
     rows = width/scale;
     cols = height/scale;
@@ -81,7 +82,6 @@ void ofApp::setup(){
 void ofApp::update(){
     
     //Make the vertices move along with the audio
-
     auto &verts = mesh.getVertices(); //Get all vertices of the mesh
     
     // For each vertex
